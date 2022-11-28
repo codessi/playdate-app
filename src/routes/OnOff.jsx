@@ -1,8 +1,9 @@
 import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { PlayContext } from "../context/PlayContext"
+import { Link } from "react-router-dom"
 
-const Home = () => {
+const OnOff = () => {
     // const [play, setPlay] = useState(false)
     const { name, play, setPlay } = useContext(PlayContext)
     const navigate =  useNavigate()
@@ -45,9 +46,12 @@ const Home = () => {
                         DONE PLAYING{" "}
                     </button>
                 )}
+              
+
             </div>
+            <Link className="underline mt-5" to="/list">SEE ALL FRIENDS</Link>
         </div>
     )
 }
 
-export default Home
+export default OnOff
