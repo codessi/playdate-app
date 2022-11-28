@@ -8,17 +8,14 @@ import TempSignIn from "./routes/TempSignIn"
 
 function App() {
     return (
-        <div>
-            <Routes>
-                <Route path="/" element={<Navigation />}>
-                    <Route index element={<Home />} />
-
-                    <Route path="sign-in" element={<SignInForm />} />
-                    <Route path="list" element={<List />}/>
-                    <Route path="temp-sign-in" element={<TempSignIn />}/>
-                </Route>
-            </Routes>
-        </div>
+        <Routes>
+            <Route path="/" element={<Navigation />}>
+                <Route index element={<Home />} />
+                <Route path="sign-in" element={<SignInForm />} />
+                <Route path="list" element={<List />} />
+                <Route path="temp-sign-in" element={<TempSignIn />} />
+            </Route>
+        </Routes>
     )
 }
 

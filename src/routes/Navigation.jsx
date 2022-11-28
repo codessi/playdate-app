@@ -4,7 +4,7 @@ const Navigation = () => {
     return (
         <>
             <div className="h-screen relative">
-                <div className="text-center absolute border inset-x-0 text-gray-800 font-semibold  p-2 text-2xl">PLAY DATE</div>
+                <div className="text-center absolute border inset-x-0 top-0 text-gray-800 font-semibold  p-2 text-2xl">PLAY DATE</div>
                 <Outlet />
 
                 <div className="absolute bottom-0 border inset-x-0 text-center">
