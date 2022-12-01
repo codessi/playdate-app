@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 // import { useNavigate } from "react-router-dom"
 import { PlayContext } from "../context/PlayContext"
 import { Link } from "react-router-dom"
@@ -6,49 +6,48 @@ import { useCollection } from "../hooks/useCollection"
 
 import { updateDoc, doc } from "firebase/firestore"
 import { db } from "../utils/firebase/firebase.utils"
+import DetailModal from "../components/DetailModal"
 
 const OnOff = () => {
   // const [play, setPlay] = useState(false)
   const { user, setUser } = useContext(PlayContext)
   const { playOn, name } = user
-  const {documents, error}=useCollection("users")
-  console.log(documents)
+  const { documents, error } = useCollection("users")
 
-  // const userDb = documents?.find(document =>  document.name === user.name.toLowerCase())
-  // console.log(userDb)
+  const [showDetailModal, setShowDetailModal] = useState(false)
 
-
- useEffect(() => {
-  
-  const userDb = documents?.find(document =>  document.name === user.name.toLowerCase())
-   userDb && setUser(userDb)
-
- }, [])
- 
+  useEffect(() => {
+    const userDb = documents?.find(
+      (document) => document.name === user.name.toLowerCase()
+    )
+    userDb && setUser(userDb)
+  }, [])
 
   const handlePlayOn = async () => {
+    
 
-    setUser({...user, playOn: true})
-
-    const docRef = doc(db, "users", name)
+    const docRef = doc(db, "users", name.toLowerCase())
     await updateDoc(docRef, {
       playOn: true,
     })
-
+    
+    setUser({ ...user, playOn: true })
   }
   const handlePlayOff = async () => {
+   
 
-    setUser({...user, playOn: false})
-
-    const docRef = doc(db, "users", name)
+    const docRef = doc(db, "users", name.toLowerCase())
     await updateDoc(docRef, {
       playOn: false,
-    })
+    }) 
+    setUser({ ...user, playOn: false })
   }
+
+  const handleClick = () => {}
 
   return (
     // container
-    <div className=" h-screen flex flex-col justify-center items-center">
+    <div className=" h-screen flex flex-col justify-center items-center relative">
       <div>
         <div className="flex flex-col items-center ">
           <div className=" text-center mb-2">&nbsp; HELLO !</div>
@@ -80,6 +79,16 @@ const OnOff = () => {
           </button>
         )}
       </div>
+      <button
+        onClick={() => setShowDetailModal(true)}
+        className="underline mt-5 relative"
+        to="/list"
+      >
+        ADD DETAILS (Optional )
+      </button>
+
+      {showDetailModal && <DetailModal setShowDetailModal={setShowDetailModal}/>}
+
       <Link className="underline mt-5" to="/list">
         SEE ALL FRIENDS
       </Link>

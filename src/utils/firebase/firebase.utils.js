@@ -30,7 +30,7 @@ initializeApp(firebaseConfig)
 export const db = getFirestore()
 
 export const addUser = async (user) => {
-   await setDoc(doc(db, "users", user.name),user)
+    await setDoc(doc(db, "users", user.name),user)
 }
 
 
