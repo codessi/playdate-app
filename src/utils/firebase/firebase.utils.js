@@ -2,7 +2,17 @@
 import { initializeApp } from "firebase/app"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { collection, addDoc, getFirestore } from "firebase/firestore"
+import {
+    collection,
+    addDoc,
+    setDoc,
+    doc,
+    getFirestore,
+    query,
+    where,
+    onSnapshot,
+} from "firebase/firestore"
+import { useEffect } from "react"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -20,9 +30,7 @@ initializeApp(firebaseConfig)
 export const db = getFirestore()
 
 export const addUser = async (user) => {
-    const docRef = await addDoc(collection(db, "users"), {
-        name: {user},
-        playOn: true
-    })
-    console.log("Document written with ID: ", docRef.id)
+   await setDoc(doc(db, "users", user.name),user)
 }
+
+

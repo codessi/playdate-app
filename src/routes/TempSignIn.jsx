@@ -1,24 +1,45 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
-import { PlayContext } from '../context/PlayContext'
+import React, { useContext } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { PlayContext } from "../context/PlayContext"
+import { addUser } from "../utils/firebase/firebase.utils"
 
 const TempSignIn = () => {
-    const {name, setName} = useContext(PlayContext)
-    const handleChange = (e) => {
-        setName(e.target.value)
-        console.log(name)
-    }
+  const { user, setUser } = useContext(PlayContext)
 
+  const navigate = useNavigate()
+
+  const handleChange = (e) => {
+    setUser({ ...user, name: e.target.value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    await addUser(user)
+    
+    navigate("on-off")
+  }
 
   return (
-    <div className='border h-full flex flex-col justify-center items-center space-y-4'>
-        <div>PLEASE PUT YOUR NAME HERE</div>
-        <input className='border border-gray-400 text-center' type="text" value={name} 
+    <form
+      onSubmit={handleSubmit}
+      className="border h-full flex flex-col justify-center items-center space-y-4"
+    >
+      <div className="text-center font-semibold w-[60%]">
+        PLEASE PUT CHILD'S FIRST NAME HERE
+      </div>
+      <input
+        className="border border-gray-400 w-[80%] text-center text-3xl p-1"
+        type="text"
+        value={user.name}
+        name="name"
+        label="name"
         onChange={handleChange}
-        />
-        <div>AND</div>
-        <Link to ="on-off"className='border rounded p-4 px-12 shadow-md' >START</Link>
-    </div>
+      />
+      <div>AND</div>
+      <button type="submit" className="border rounded p-4 px-12 shadow-md">
+        START
+      </button>
+    </form>
   )
 }
 
