@@ -6,7 +6,7 @@ import { useCollection } from "../hooks/useCollection"
 
 import { updateDoc, doc } from "firebase/firestore"
 import { db } from "../utils/firebase/firebase.utils"
-import DetailModal from "../components/DetailModal"
+import DetailFormModal from "../components/DetailFormModal"
 
 const OnOff = () => {
   // const [play, setPlay] = useState(false)
@@ -14,7 +14,7 @@ const OnOff = () => {
   const { playOn, name } = user
   const { documents, error } = useCollection("users")
 
-  const [showDetailModal, setShowDetailModal] = useState(false)
+  const [showDetailFormModal, setShowDetailFormModal] = useState(false)
 
   useEffect(() => {
     const userDb = documents?.find(
@@ -43,7 +43,6 @@ const OnOff = () => {
     setUser({ ...user, playOn: false })
   }
 
-  const handleClick = () => {}
 
   return (
     // container
@@ -53,10 +52,10 @@ const OnOff = () => {
           <div className=" text-center mb-2">&nbsp; HELLO !</div>
           <div className="mb-8  text-center flex items-center justify-center">
             {playOn && (
-              <span className="w-5 h-5 inline-block mr-1 bg-green-500 border rounded-full"></span>
+              <span onClick={handlePlayOff} className="w-5 h-5 inline-block mr-1 bg-green-500 border rounded-full"></span>
             )}
             {!playOn && (
-              <span className="w-5 h-5 inline-block mr-1 border-black border rounded-full"></span>
+              <span onClick={handlePlayOn} className="w-5 h-5 inline-block mr-1 border-black border rounded-full"></span>
             )}
             {name.toUpperCase()}
           </div>
@@ -80,14 +79,14 @@ const OnOff = () => {
         )}
       </div>
       <button
-        onClick={() => setShowDetailModal(true)}
+        onClick={() => setShowDetailFormModal(true)}
         className="underline mt-5 relative"
         to="/list"
       >
         ADD DETAILS (Optional )
       </button>
 
-      {showDetailModal && <DetailModal setShowDetailModal={setShowDetailModal}/>}
+      {showDetailFormModal && <DetailFormModal setShowDetailFormModal={setShowDetailFormModal}/>}
 
       <Link className="underline mt-5" to="/list">
         SEE ALL FRIENDS

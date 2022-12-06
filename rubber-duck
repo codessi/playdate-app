@@ -1,12 +1,11 @@
-user state on where . ..
-user context
-doecuemt usecollection was fetch by listinere.
+timestamp...
 
-then. it should update the 
-playContext use should b {name: fox, playOn: false}
+should i make ..
 
-and when hadle click set user to play on  it sholud at the on off it receivs user because  in sign in handle submit add user  then
-next is that  uer callceinot shoud updtate document  right?  huh??? 
-use collection use useeffect 
-then it calle at context
-i am pulling data from too many place.... 
+just try the update every 5 min
+
+and the batch
+
+https://firebase.google.com/docs/firestore/manage-data/transactions
+
+and 
