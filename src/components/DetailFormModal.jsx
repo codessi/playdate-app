@@ -30,6 +30,8 @@ const DetailFormModal = ({ setShowDetailFormModal }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     addDetails(user, details)
+    setShowDetailFormModal(false)
+
   }
 
   return (

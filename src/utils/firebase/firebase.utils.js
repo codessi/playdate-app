@@ -38,7 +38,6 @@ export const addUser = async (user) => {
 // export const addDetails = async(user) => {
 //     await setDoc(doc(db, "users", user.name),{})
 // }
-
 export const addDetails = async (user, details) => {
   const docRef = doc(db, "users", user.name.toLowerCase())
   await updateDoc(docRef, {
