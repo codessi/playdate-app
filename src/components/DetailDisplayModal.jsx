@@ -1,4 +1,9 @@
+import moment from "moment/moment"
 import React from "react"
+
+function convert(input) {
+  return moment(input, "HH:mm").format("h:mm A")
+}
 
 const DetailDisplayModal = ({ name, showModal, setShowModal, user }) => {
   // console.log(showModal)
@@ -9,7 +14,7 @@ const DetailDisplayModal = ({ name, showModal, setShowModal, user }) => {
   // console.log(user)
 
   return (
-    <div className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] border bg-white h-full w-screen p-10 ">
+    <div className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] border bg-white h-full w-screen  p-10 ">
       <button
         className="border rounded-full absolute right-1 top-1 h-10 w-10"
         onClick={clickHandler}
@@ -23,8 +28,8 @@ const DetailDisplayModal = ({ name, showModal, setShowModal, user }) => {
           <div>LOCATION: {user.details.where}</div>
           <div>DATE:{user.details.dateOf}</div>
           <div>TIME</div>
-          <div>START:{user.details.start}</div>
-          <div>End:{user.details.end}</div>
+          <div>START:{convert (user.details.start)!=="Invalid date" && convert (user.details.start)}</div>
+          <div>End:{convert (user.details.end)!=="Invalid date" && convert (user.details.end)}</div>
           <div>Comments: {user.details.comments}</div>
         </>
       ) : (

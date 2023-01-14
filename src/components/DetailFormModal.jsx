@@ -1,16 +1,20 @@
 import React, { useContext, useState } from "react"
 import { addDetails } from "../utils/firebase/firebase.utils"
 import { PlayContext } from "../context/PlayContext"
+import moment from "moment/moment"
 
 const today = new Date()
 // const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 const date = new Date().toISOString().substring(0, 10)
 
-const time =
-  today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+function convert(input) {
+  return moment(input, "HH:mm").format("h:mm A")
+}
+
+const time = today.getHours() + ":" + today.getMinutes()
 
 const DetailFormModal = ({ setShowDetailFormModal }) => {
-  const {user} = useContext(PlayContext)
+  const { user } = useContext(PlayContext)
   const INITIAL_STATE = {
     where: "",
     dateOf: date,
@@ -22,16 +26,16 @@ const DetailFormModal = ({ setShowDetailFormModal }) => {
   const [details, setDetails] = useState(INITIAL_STATE)
   const { where, dateOf, start, end, comments } = details
 
-  // console.log(details)
+ 
   const handleChange = (e) => {
-    setDetails({ ...details, [e.target.name]: e.target.value })
+      setDetails({ ...details, [e.target.name]: e.target.value })
+
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     addDetails(user, details)
     setShowDetailFormModal(false)
-
   }
 
   return (
