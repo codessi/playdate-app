@@ -30,6 +30,8 @@ const OnOff = () => {
     await updateDoc(docRef, {
       playOn: true,
     })
+
+    // test
     
     setUser({ ...user, playOn: true })
   }
