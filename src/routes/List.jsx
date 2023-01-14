@@ -8,7 +8,7 @@ const List = () => {
   // const { name, play, setPlay } = useContext(PlayContext)
 
   const { documents, error } = useCollection("users")
-  console.log(documents)
+  // console.log(documents)
 
   // changeAllDoc( )
 

@@ -22,7 +22,7 @@ const DetailFormModal = ({ setShowDetailFormModal }) => {
   const [details, setDetails] = useState(INITIAL_STATE)
   const { where, dateOf, start, end, comments } = details
 
-  console.log(details)
+  // console.log(details)
   const handleChange = (e) => {
     setDetails({ ...details, [e.target.name]: e.target.value })
   }

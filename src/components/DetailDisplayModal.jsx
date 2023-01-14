@@ -1,12 +1,12 @@
 import React from "react"
 
 const DetailDisplayModal = ({ name, showModal, setShowModal, user }) => {
-  console.log(showModal)
+  // console.log(showModal)
   const clickHandler = () => {
     setShowModal(false)
   }
 
-  console.log(user)
+  // console.log(user)
 
   return (
     <div className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] border bg-white h-full w-screen p-10 ">
