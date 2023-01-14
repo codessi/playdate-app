@@ -14,7 +14,7 @@ const TempSignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await addUser({...user, name:user.name.toLowerCase()})
+    await addUser({...user, name:user.name.toLowerCase().trim()})
 
     navigate("on-off")
   }
